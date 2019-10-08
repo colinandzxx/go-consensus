@@ -1,4 +1,4 @@
-module github.com/colinandzxx/go_consensus
+module github.com/colinandzxx/go-consensus
 
 go 1.12
 

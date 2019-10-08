@@ -1,9 +1,7 @@
 package consensus
 
 import (
-	"encoding"
-	"encoding/json"
-	"fmt"
+	"github.com/colinandzxx/go-consensus/types"
 	"github.com/tinylib/msgp/msgp"
 	"math/big"
 )
@@ -14,11 +12,11 @@ type Header interface {
 	//Marshal() ([]byte, error)
 
 	GetHeight() uint64
-	GetHash() Byte32
-	GetParentHash() Byte32
+	GetHash() types.Byte32
+	GetParentHash() types.Byte32
 	GetNonce() uint64
 	GetTimestamp() uint64
-	GetCoinbase() Bytes
+	GetCoinbase() types.Bytes
 	GetConsensusData() Data
 }
 
@@ -31,10 +29,10 @@ type Block interface{
 
 type ChainReader interface {
 	GetCurrentHeader() Header
-	GetHeader(hash Byte32, height uint64) Header
+	GetHeader(hash types.Byte32, height uint64) Header
 	GetHeaderByHeight(height uint64) Header
-	GetHeaderByHash(hash Byte32) Header
-	GetBlock(hash Byte32, height uint64) Block
+	GetHeaderByHash(hash types.Byte32) Header
+	GetBlock(hash types.Byte32, height uint64) Block
 }
 
 // ================= consensus data interface =================
@@ -48,12 +46,12 @@ type DataUnWrapper interface {
 }
 
 type Data interface {
-	encoding.TextMarshaler
-	encoding.TextUnmarshaler
-	json.Unmarshaler
-	json.Marshaler
-	fmt.Stringer
-	fmt.Formatter
+	//encoding.TextMarshaler
+	//encoding.TextUnmarshaler
+	//json.Unmarshaler
+	//json.Marshaler
+	//fmt.Stringer
+	//fmt.Formatter
 
 	// for msgp
 	msgp.Decodable
