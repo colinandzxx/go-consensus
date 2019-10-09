@@ -36,8 +36,8 @@ type Header interface {
 	GetParentHash() types.Byte32
 	GetNonce() uint64
 	GetTimestamp() uint64
-	GetCoinbase() types.Bytes
-	GetConsensusData() Data
+	GetGenerator() types.Bytes
+	GetConsensusData() types.Bytes
 }
 
 type Block interface{
@@ -58,11 +58,11 @@ type ChainReader interface {
 // ================= consensus data interface =================
 
 type DataWrapper interface {
-	Wrap(chain ChainReader, height uint64) ([]byte, error)
+	Wrap(chain ChainReader, unconsensus Block) ([]byte, error)
 }
 
 type DataUnWrapper interface {
-	UnWrap([]byte) (Data, error)
+	UnWrap(ori []byte) (Data, error)
 }
 
 type Data interface {

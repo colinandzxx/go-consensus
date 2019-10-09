@@ -25,6 +25,8 @@ import (
 	"reflect"
 )
 
+//go:generate msgp
+
 var (
 	bytesT = reflect.TypeOf(Bytes{})
 	byte32T = reflect.TypeOf(Byte32{})
