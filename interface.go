@@ -34,10 +34,12 @@ type Header interface {
 	GetHeight() uint64
 	GetHash() types.Byte32
 	GetParentHash() types.Byte32
-	GetNonce() uint64
+	//GetNonce() uint64
 	GetTimestamp() uint64
 	GetGenerator() types.Bytes
-	GetConsensusData() types.Bytes
+	GetDifficulty() *big.Int
+	GetConsensusData() Data
+	GetOriConsensusData() types.Bytes
 }
 
 type Block interface{
@@ -58,11 +60,11 @@ type ChainReader interface {
 // ================= consensus data interface =================
 
 type DataWrapper interface {
-	Wrap(chain ChainReader, unconsensus Block) ([]byte, error)
+	Wrap(chain ChainReader, unconsensus Header) ([]byte, error)
 }
 
 type DataUnWrapper interface {
-	UnWrap(ori []byte) (Data, error)
+	UnWrap(chain ChainReader, header Header) (Data, error)
 }
 
 type Data interface {
@@ -87,14 +89,14 @@ type Data interface {
 // ================= engine interface =================
 
 type Engine interface {
-	Stuffer
+	//Stuffer
 	Verifier
 	Forger
 }
 
-type Stuffer interface {
-	CalculateDifficulty(chain ChainReader, height uint64) *big.Int
-}
+//type Stuffer interface {
+//	CalculateDifficulty(chain ChainReader, block Block) *big.Int
+//}
 
 type Verifier interface {
 	// VerifyHeader checks whether a header conforms to the consensus rules of a
