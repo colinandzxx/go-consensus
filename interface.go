@@ -46,7 +46,7 @@ type Block interface{
 	//Marshal() ([]byte, error)
 
 	GetHeader() Header
-	GetTotalDifficulty() *big.Int
+	//GetTotalDifficulty() *big.Int
 }
 
 type ChainReader interface {
