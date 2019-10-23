@@ -60,11 +60,11 @@ type ChainReader interface {
 // ================= consensus data interface =================
 
 type DataWrapper interface {
-	Wrap(chain ChainReader, unconsensus Header) ([]byte, error)
+	Wrap(chain ChainReader, unconsensus Header, engine Engine) ([]byte, error)
 }
 
 type DataUnWrapper interface {
-	UnWrap(chain ChainReader, header Header) (Data, error)
+	UnWrap(chain ChainReader, header Header, engine Engine) (Data, error)
 }
 
 type Data interface {
