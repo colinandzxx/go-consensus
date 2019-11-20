@@ -38,7 +38,6 @@ type Header interface {
 	GetTimestamp() uint64
 	GetGenerator() types.Bytes
 	GetDifficulty() *big.Int
-	GetConsensusData() Data
 	GetOriConsensusData() types.Bytes
 }
 
@@ -60,11 +59,11 @@ type ChainReader interface {
 // ================= consensus data interface =================
 
 type DataWrapper interface {
-	Wrap(chain ChainReader, unconsensus Header, engine Engine) ([]byte, error)
+	Wrap() ([]byte, error)
 }
 
 type DataUnWrapper interface {
-	UnWrap(chain ChainReader, header Header, engine Engine) (Data, error)
+	UnWrap(oriConsensusData []byte) error
 }
 
 type Data interface {
